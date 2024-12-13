@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://c83bfk7yxymaf"]
+
+[ext_resource type="Script" path="res://Script/mod.gd" id="1_t6mg1"]
+[ext_resource type="Texture2D" uid="uid://ca7simal4k7u4" path="res://arte/flotar_enemigo.png" id="3_eowwe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7n18r"]
+atlas = ExtResource("3_eowwe")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olj2g"]
+atlas = ExtResource("3_eowwe")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsr53"]
+atlas = ExtResource("3_eowwe")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqmcf"]
+atlas = ExtResource("3_eowwe")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0eiom"]
+atlas = ExtResource("3_eowwe")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rtqqq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7n18r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olj2g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsr53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqmcf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0eiom")
+}],
+"loop": true,
+"name": &"volar",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4v0nq"]
+
+[node name="mob" type="CharacterBody2D"]
+script = ExtResource("1_t6mg1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rtqqq")
+animation = &"volar"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4v0nq")

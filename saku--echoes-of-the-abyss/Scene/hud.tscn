@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfw1kwafhcwqn"]
+
+[ext_resource type="Script" path="res://Script/hud.gd" id="1_qy5k0"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_qy5k0")
+
+[node name="StartButton" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.464
+anchor_top = 0.696
+anchor_right = 0.464
+anchor_bottom = 0.696
+offset_left = -39.72
+offset_top = -16.92
+offset_right = 39.28
+offset_bottom = 17.08
+text = "inicia"
+
+[node name="MessageTimer" type="Timer" parent="."]
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.456
+anchor_top = 0.322
+anchor_right = 0.456
+anchor_bottom = 0.322
+offset_left = -81.6801
+offset_top = -11.84
+offset_right = 82.3199
+offset_bottom = 11.16
+text = "que empiese el juego"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

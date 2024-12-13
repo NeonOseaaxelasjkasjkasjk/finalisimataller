@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://0hwya7mkxiet"]
+
+[ext_resource type="PackedScene" uid="uid://dfw1kwafhcwqn" path="res://Scene/hud.tscn" id="1_21hqx"]
+[ext_resource type="Script" path="res://Script/main.gd" id="1_l3mqa"]
+[ext_resource type="PackedScene" uid="uid://b75wd4guu0uao" path="res://Scene/saku.tscn" id="2_4nlfn"]
+[ext_resource type="PackedScene" uid="uid://dfnak28qarjeo" path="res://Scene/mapa1.tscn" id="3_8lrk1"]
+[ext_resource type="PackedScene" uid="uid://c83bfk7yxymaf" path="res://Scene/mob.tscn" id="5_ykgkl"]
+
+[sub_resource type="Curve2D" id="Curve2D_j5xi8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 4, 253, 0, 0, 0, 0, 474, 252, 0, 0, 0, 0, 474, 6, 0, 0, 0, 0, 6, 5)
+}
+point_count = 5
+
+[node name="Main" type="Node" groups=["mob"]]
+script = ExtResource("1_l3mqa")
+mob_scene = ExtResource("5_ykgkl")
+
+[node name="ModTimer" type="Timer" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(18, 242)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_j5xi8")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(4, 4)
+rotation = 1.5708
+
+[node name="HUD" parent="." instance=ExtResource("1_21hqx")]
+
+[node name="mapa1" parent="." instance=ExtResource("3_8lrk1")]
+position = Vector2(1, 0)
+
+[node name="saku" parent="." instance=ExtResource("2_4nlfn")]
+
+[connection signal="timeout" from="ModTimer" to="." method="_on_mod_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
